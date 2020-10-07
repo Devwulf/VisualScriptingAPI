@@ -106,7 +106,7 @@ namespace VisualScripting.API.Controllers.V1
         /// <response code="200">Returns a boolean notifying if the user has been updated properly.</response>
         [HttpPut()]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
-        public async Task<bool> UpdateUser(User parameter)
+        public async Task<bool> UpdateUser([FromBody]User parameter)
         {
             if (parameter == null)
                 throw new ArgumentNullException("parameter");

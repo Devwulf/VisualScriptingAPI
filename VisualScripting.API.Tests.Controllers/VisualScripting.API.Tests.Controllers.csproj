@@ -32,6 +32,7 @@
     <ProjectReference Include="..\VisualScripting.API.DataContracts\VisualScripting.API.DataContracts.csproj" />
     <ProjectReference Include="..\VisualScripting.API\VisualScripting.API.csproj" />
     <ProjectReference Include="..\VisualScripting.IoC.Configuration\VisualScripting.IoC.Configuration.csproj" />
+    <ProjectReference Include="..\VisualScripting.Services\VisualScripting.Services.csproj" />
     <ProjectReference Include="..\VisualScripting.Tools\VisualScripting.Tools.csproj" />
   </ItemGroup>
 

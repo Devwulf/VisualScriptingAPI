@@ -8,6 +8,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
+using VisualScripting.API.Common.Settings;
+using VisualScripting.API.Tests.Controllers.MockServices;
 
 namespace VisualScripting.API.Tests.Controllers.ControllerTests.V1
 {
@@ -19,8 +22,9 @@ namespace VisualScripting.API.Tests.Controllers.ControllerTests.V1
 
         public UserControllerTests() : base()
         {
-            var businessService = _serviceProvider.GetRequiredService<IUserService>();
+            var settings = _serviceProvider.GetRequiredService<IOptions<AppSettings>>();
             var mapper = _serviceProvider.GetRequiredService<IMapper>();
+            var businessService = new MockUserService(settings, mapper);
             var loggerFactory = _serviceProvider.GetRequiredService<ILoggerFactory>();
             var logger = loggerFactory.CreateLogger<UserController>();
 
