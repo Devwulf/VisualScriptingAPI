@@ -1,5 +1,6 @@
 ﻿using VisualScripting.Services.Model;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace VisualScripting.Services.Contracts
 {
@@ -8,6 +9,8 @@ namespace VisualScripting.Services.Contracts
         Task<User> CreateAsync(User user);
 
         Task<bool> UpdateAsync(User user);
+
+        Task<bool> UpdateFieldsAsync(string id, Dictionary<string, string> changes);
 
         Task<bool> DeleteAsync(string id);
 

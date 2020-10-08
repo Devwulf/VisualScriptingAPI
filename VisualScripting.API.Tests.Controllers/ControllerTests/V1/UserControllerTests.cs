@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using VisualScripting.API.Common.Settings;
 using VisualScripting.API.Tests.Controllers.MockServices;
+using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace VisualScripting.API.Tests.Controllers.ControllerTests.V1
 {
@@ -44,6 +46,32 @@ namespace VisualScripting.API.Tests.Controllers.ControllerTests.V1
             Assert.IsNotNull(user);
         }
 
+        [TestMethod]
+        public async Task CreateUser_UserParam_InvalidUser()
+        {
+            var firstNameNullResults = new List<ValidationResult>();
+            var firstNameNull = new User { Id = "U1", Firstname = null, Lastname = "Lastname 1" };
 
+            var firstNameEmptyResults = new List<ValidationResult>();
+            var firstNameEmpty = new User { Id = "U1", Firstname = "", Lastname = "Lastname 1" };
+
+            bool firstNameNullResult = Validator.TryValidateObject(firstNameNull, new System.ComponentModel.DataAnnotations.ValidationContext(firstNameNull), firstNameNullResults);
+            bool firstNameEmptyResult = Validator.TryValidateObject(firstNameEmpty, new System.ComponentModel.DataAnnotations.ValidationContext(firstNameEmpty), firstNameEmptyResults);
+
+            Assert.IsFalse(firstNameNullResult);
+            Assert.IsFalse(firstNameEmptyResult);
+
+            var lastNameNullResults = new List<ValidationResult>();
+            var lastNameNull = new User { Id = "U1", Firstname = "Firstname 1", Lastname = null };
+
+            var lastNameEmptyResults = new List<ValidationResult>();
+            var lastNameEmpty = new User { Id = "U1", Firstname = "Firstname 1", Lastname = "" };
+
+            bool lastNameNullResult = Validator.TryValidateObject(lastNameNull, new System.ComponentModel.DataAnnotations.ValidationContext(firstNameNull), firstNameNullResults);
+            bool lastNameEmptyResult = Validator.TryValidateObject(lastNameEmpty, new System.ComponentModel.DataAnnotations.ValidationContext(firstNameEmpty), firstNameEmptyResults);
+
+            Assert.IsFalse(lastNameNullResult);
+            Assert.IsFalse(lastNameEmptyResult);
+        }
     }
 }

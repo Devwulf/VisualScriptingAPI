@@ -69,8 +69,10 @@ namespace VisualScripting.API.Controllers.V1
         /// <param name="value"></param>
         /// <returns>A newly created user.</returns>
         /// <response code="201">Returns the newly created item.</response>
+        /// <response code="204">If the item is null.</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(User))]
+        [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(User))]
         public async Task<User> CreateUser([FromBody]UserCreationRequest value)
         {
             _logger.LogDebug($"UserControllers::Post::");
@@ -80,7 +82,6 @@ namespace VisualScripting.API.Controllers.V1
 
             if (value.User == null)
                 throw new ArgumentNullException("value.User");
-
 
             var data = await _service.CreateAsync(_mapper.Map<S.User>(value.User));
 
@@ -129,7 +130,7 @@ namespace VisualScripting.API.Controllers.V1
         /// <response code="200">Boolean notifying if the user has been deleted properly.</response>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
-        public async Task<bool> DeleteDevice(string id)
+        public async Task<bool> DeleteUser(string id)
         {
             return await _service.DeleteAsync(id);
         }

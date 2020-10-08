@@ -71,18 +71,18 @@ namespace VisualScripting.API.Controllers.V2
 
         #region PUT
         [HttpPut()]
-        public async Task<bool> UpdateUser(User parameter)
+        public async Task<bool> UpdateUser([FromBody]UpdateRequest parameter)
         {
             if (parameter == null)
                 throw new ArgumentNullException("parameter");
 
-            return await _service.UpdateAsync(_mapper.Map<S.User>(parameter));
+            return await _service.UpdateFieldsAsync(parameter.Id, parameter.NameValuePairs);
         }
         #endregion
 
         #region DELETE
         [HttpDelete("{id}")]
-        public async Task<bool> DeleteDevice(string id)
+        public async Task<bool> DeleteUser(string id)
         {
             return await _service.DeleteAsync(id);
         }
