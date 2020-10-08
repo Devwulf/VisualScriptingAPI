@@ -31,6 +31,11 @@ namespace VisualScripting.API.Tests.Controllers.MockServices
             throw new NotImplementedException();
         }
 
+        public Task<bool> UpdateFieldsAsync(string id, Dictionary<string, string> changes)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<bool> DeleteAsync(string id)
         {
             throw new NotImplementedException();

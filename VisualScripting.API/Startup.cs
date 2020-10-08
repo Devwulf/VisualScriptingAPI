@@ -23,6 +23,7 @@ using System.IO;
 using System.Net;
 using System.Reflection;
 using System.Text.Json;
+using VisualScripting.API.Common.MongoDB;
 
 #pragma warning disable CS1591
 namespace VisualScripting.API
@@ -103,6 +104,12 @@ namespace VisualScripting.API
                             options.OperationFilter<SwaggerDefaultValues>();
                             options.IncludeXmlComments(XmlCommentsFilePath);
                         });
+                    }
+
+                    //MongoDB
+                    if (_appSettings.MongoDB.Enabled)
+                    {
+                        services.AddSingleton<MongoDBClient>(new MongoDBClient(_appSettings.MongoDB.Uri));
                     }
 
                     //Mappings

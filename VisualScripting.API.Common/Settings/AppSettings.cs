@@ -8,6 +8,8 @@ namespace VisualScripting.API.Common.Settings
         public ApiSettings API { get; set; }
         [Required]
         public Swagger Swagger { get; set; }
+        [Required]
+        public MongoDBOptions MongoDB { get; set; }
     }
 
     public class ApiSettings
@@ -42,5 +44,13 @@ namespace VisualScripting.API.Common.Settings
     {
         [Required]
         public bool Enabled { get; set; }
+    }
+
+    public class MongoDBOptions
+    {
+        [Required]
+        public bool Enabled { get; set; }
+        [Required]
+        public string Uri { get; set; }
     }
 }

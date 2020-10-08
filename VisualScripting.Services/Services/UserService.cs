@@ -9,6 +9,7 @@ using MongoDB.Driver;
 using System.Collections.Generic;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Conventions;
+using VisualScripting.API.Common.MongoDB;
 
 namespace VisualScripting.Services
 {
@@ -17,16 +18,14 @@ namespace VisualScripting.Services
         private AppSettings _settings;
         private readonly IMapper _mapper;
         private readonly IMongoCollection<User> _users;
+        private readonly MongoClient _mongoClient;
 
-        public UserService(IOptions<AppSettings> settings, IMapper mapper)
+        public UserService(IOptions<AppSettings> settings, IMapper mapper, MongoDBClient mongoClient)
         {
-            var client = new MongoClient("mongodb://localhost:27017");
-            var database = client.GetDatabase("VisualScriptingDb");
-            var pack = new ConventionPack();
-            pack.AddMemberMapConvention("LowerCaseElementName", m => m.SetElementName(m.MemberName.ToLower()));
-            ConventionRegistry.Register("Lower Case", pack, t => true);
+            var database = mongoClient.MongoClient.GetDatabase("VisualScriptingDb");
 
             _users = database.GetCollection<User>("Users");
+            _mongoClient = mongoClient.MongoClient;
             _settings = settings?.Value;
             _mapper = mapper;
         }
