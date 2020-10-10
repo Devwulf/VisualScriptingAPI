@@ -4,6 +4,7 @@ using VisualScripting.Services.Contracts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using VisualScripting.Services.Services;
 
 namespace VisualScripting.IoC.Configuration.DI
 {
@@ -14,6 +15,7 @@ namespace VisualScripting.IoC.Configuration.DI
             if (services != null)
             {
                 services.AddTransient<IUserService, UserService>();
+                services.AddTransient<IScripletService, ScripletService>();
             }
         }
 

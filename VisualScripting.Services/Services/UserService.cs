@@ -22,7 +22,9 @@ namespace VisualScripting.Services
 
         public UserService(IOptions<AppSettings> settings, IMapper mapper, MongoDBClient mongoClient)
         {
-            var database = mongoClient.MongoClient.GetDatabase("VisualScriptingDb");
+            var client = mongoClient.MongoClient;
+            var appSettings = settings.Value;
+            var database = client.GetDatabase(appSettings.MongoDB.DatabaseName);
 
             _users = database.GetCollection<User>("Users");
             _mongoClient = mongoClient.MongoClient;
