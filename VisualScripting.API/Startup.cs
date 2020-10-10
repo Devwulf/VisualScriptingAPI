@@ -61,6 +61,8 @@ namespace VisualScripting.API
                 {
                     _logger.LogDebug("Startup::ConfigureServices::valid AppSettings");
 
+                    services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+
                     services.AddControllers(
                         opt =>
                         {
@@ -109,7 +111,10 @@ namespace VisualScripting.API
                     //MongoDB
                     if (_appSettings.MongoDB.Enabled)
                     {
-                        services.AddSingleton<MongoDBClient>(new MongoDBClient(_appSettings.MongoDB.Uri));
+                        if (HostingEnvironment.IsDevelopment())
+                            services.AddSingleton(new MongoDBClient(_appSettings.MongoDB.TestingUri));
+                        else
+                            services.AddSingleton(new MongoDBClient(_appSettings.MongoDB.Uri));
                     }
 
                     //Mappings

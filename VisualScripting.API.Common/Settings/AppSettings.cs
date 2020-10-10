@@ -52,5 +52,9 @@ namespace VisualScripting.API.Common.Settings
         public bool Enabled { get; set; }
         [Required]
         public string Uri { get; set; }
+        [Required]
+        public string TestingUri { get; set; }
+        [Required]
+        public string DatabaseName { get; set; }
     }
 }

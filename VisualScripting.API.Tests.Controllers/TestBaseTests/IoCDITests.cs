@@ -49,5 +49,66 @@ namespace VisualScripting.API.Tests.Controllers.TestBaseTests
             var ioptions = serviceProvider.GetService<IOptions<AppSettings>>();
             Assert.IsNotNull(ioptions);
         }
+
+        [TestMethod]
+        public async Task IoC_DI_IOptions_AppSettings_Value_OK()
+        {
+            var serviceProvider = _services.BuildServiceProvider();
+            Assert.IsNotNull(serviceProvider);
+
+            var ioptions = serviceProvider.GetService<IOptions<AppSettings>>();
+            Assert.IsNotNull(ioptions);
+
+            var appSettings = ioptions.Value;
+            Assert.IsNotNull(appSettings);
+        }
+
+        [TestMethod]
+        public async Task IoC_DI_IOptions_AppSettings_Value_API_OK()
+        {
+            var serviceProvider = _services.BuildServiceProvider();
+            Assert.IsNotNull(serviceProvider);
+
+            var ioptions = serviceProvider.GetService<IOptions<AppSettings>>();
+            Assert.IsNotNull(ioptions);
+
+            var appSettings = ioptions.Value;
+            Assert.IsNotNull(appSettings);
+
+            var api = appSettings.API;
+            Assert.IsNotNull(api);
+        }
+
+        [TestMethod]
+        public async Task IoC_DI_IOptions_AppSettings_Value_Swagger_OK()
+        {
+            var serviceProvider = _services.BuildServiceProvider();
+            Assert.IsNotNull(serviceProvider);
+
+            var ioptions = serviceProvider.GetService<IOptions<AppSettings>>();
+            Assert.IsNotNull(ioptions);
+
+            var appSettings = ioptions.Value;
+            Assert.IsNotNull(appSettings);
+
+            var swagger = appSettings.Swagger;
+            Assert.IsNotNull(swagger);
+        }
+
+        [TestMethod]
+        public async Task IoC_DI_IOptions_AppSettings_Value_MongoDB_OK()
+        {
+            var serviceProvider = _services.BuildServiceProvider();
+            Assert.IsNotNull(serviceProvider);
+
+            var ioptions = serviceProvider.GetService<IOptions<AppSettings>>();
+            Assert.IsNotNull(ioptions);
+
+            var appSettings = ioptions.Value;
+            Assert.IsNotNull(appSettings);
+
+            var mongoDb = appSettings.MongoDB;
+            Assert.IsNotNull(mongoDb);
+        }
     }
 }
