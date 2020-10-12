@@ -55,7 +55,7 @@ namespace VisualScripting.API.Controllers.V2
             if (value == null)
                 throw new ArgumentNullException("value");
 
-            if (value == null)
+            if (value.User == null)
                 throw new ArgumentNullException("value.User");
 
 

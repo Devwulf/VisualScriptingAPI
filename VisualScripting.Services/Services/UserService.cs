@@ -47,7 +47,7 @@ namespace VisualScripting.Services
             return false;
         }
 
-        public async Task<bool> UpdateFieldsAsync(string id, Dictionary<string, string> changes)
+        public async Task<bool> UpdateFieldsAsync(string id, Dictionary<string, object> changes)
         {
             var updateValues = new List<UpdateDefinition<User>>();
 

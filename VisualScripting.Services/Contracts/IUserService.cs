@@ -10,7 +10,7 @@ namespace VisualScripting.Services.Contracts
 
         Task<bool> UpdateAsync(User user);
 
-        Task<bool> UpdateFieldsAsync(string id, Dictionary<string, string> changes);
+        Task<bool> UpdateFieldsAsync(string id, Dictionary<string, object> changes);
 
         Task<bool> DeleteAsync(string id);
 

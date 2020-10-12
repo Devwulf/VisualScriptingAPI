@@ -17,8 +17,8 @@ namespace VisualScripting.Services.Services
     {
         private AppSettings _settings;
         private readonly IMapper _mapper;
-        private readonly IMongoCollection<Scriplet> _scriplets;
         private readonly MongoClient _mongoClient;
+        private readonly IMongoCollection<Scriplet> _scriplets;
 
         public ScripletService(IOptions<AppSettings> settings, IMapper mapper, MongoDBClient mongoClient)
         {
@@ -47,12 +47,27 @@ namespace VisualScripting.Services.Services
             return false;
         }
 
-        public async Task<bool> UpdateFieldsAsync(string id, Dictionary<string, string> changes)
+        public async Task<bool> UpdateSetAsync(string id, Dictionary<string, object> changes)
         {
             var updateValues = new List<UpdateDefinition<Scriplet>>();
 
             foreach (var pair in changes)
                 updateValues.Add(Builders<Scriplet>.Update.Set(pair.Key.ToLower(), pair.Value));
+
+            var update = Builders<Scriplet>.Update.Combine(updateValues);
+            var result = await _scriplets.UpdateOneAsync(s => s.Id.Equals(id), update);
+            if (result.IsAcknowledged && result.IsModifiedCountAvailable && result.ModifiedCount > 0)
+                return true;
+
+            return false;
+        }
+
+        public async Task<bool> UpdateUnsetAsync(string id, Dictionary<string, object> changes)
+        {
+            var updateValues = new List<UpdateDefinition<Scriplet>>();
+
+            foreach (var pair in changes)
+                updateValues.Add(Builders<Scriplet>.Update.Unset(pair.Key.ToLower()));
 
             var update = Builders<Scriplet>.Update.Combine(updateValues);
             var result = await _scriplets.UpdateOneAsync(s => s.Id.Equals(id), update);

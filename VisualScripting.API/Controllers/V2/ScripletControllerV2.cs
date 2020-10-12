@@ -70,7 +70,7 @@ namespace VisualScripting.API.Controllers.V2
             if (value == null)
                 throw new ArgumentNullException("value");
 
-            if (value == null)
+            if (value.Scriplet == null)
                 throw new ArgumentNullException("value.Scriplet");
 
 
@@ -86,7 +86,7 @@ namespace VisualScripting.API.Controllers.V2
 
         #region PUT
         /// <summary>
-        /// Updates an scriplet entity.
+        /// Updates a scriplet entity.
         /// </summary>
         /// <remarks>
         /// No remarks.
@@ -103,13 +103,13 @@ namespace VisualScripting.API.Controllers.V2
             if (parameter == null)
                 throw new ArgumentNullException("parameter");
 
-            return await _service.UpdateFieldsAsync(parameter.Id, parameter.NameValuePairs);
+            return await _service.UpdateSetAsync(parameter.Id, parameter.NameValuePairs);
         }
         #endregion
 
         #region DELETE
         /// <summary>
-        /// Deletes an scriplet entity.
+        /// Deletes a scriplet entity.
         /// </summary>
         /// <remarks>
         /// No remarks.

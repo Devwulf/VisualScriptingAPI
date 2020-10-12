@@ -12,7 +12,9 @@ namespace VisualScripting.Services.Contracts
 
         Task<bool> UpdateAsync(Scriplet scriplet);
 
-        Task<bool> UpdateFieldsAsync(string id, Dictionary<string, string> changes);
+        Task<bool> UpdateSetAsync(string id, Dictionary<string, object> changes);
+
+        Task<bool> UpdateUnsetAsync(string id, Dictionary<string, object> changes);
 
         Task<bool> DeleteAsync(string id);
 

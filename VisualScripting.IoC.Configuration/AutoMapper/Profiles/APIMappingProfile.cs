@@ -11,6 +11,10 @@ namespace VisualScripting.IoC.Configuration.AutoMapper.Profiles
             CreateMap<DC.User, S.User>().ReverseMap();
             CreateMap<DC.Address, S.Address>().ReverseMap();
             CreateMap<DC.Scriplet, S.Scriplet>().ReverseMap();
+            CreateMap<DC.NodeItem, S.NodeItem>().ReverseMap();
+            CreateMap<DC.VariableItem, S.VariableItem>().ReverseMap();
+            CreateMap<DC.IdValuePair, S.IdValuePair>().ReverseMap();
+            CreateMap<DC.ItemSlotPair, S.ItemSlotPair>().ReverseMap();
         }
     }
 }

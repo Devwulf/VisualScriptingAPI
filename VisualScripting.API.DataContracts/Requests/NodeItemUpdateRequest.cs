@@ -4,9 +4,9 @@ using System.Text;
 
 namespace VisualScripting.API.DataContracts.Requests
 {
-    public class UpdateRequest
+    public class NodeItemUpdateRequest
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public Dictionary<string, object> NameValuePairs { get; set; }
     }
 }
