@@ -44,7 +44,7 @@ namespace VisualScripting.API.Tests.Controllers.ControllerTests.V1
         }
 
         [TestMethod]
-        public async Task CreateUser_UserParam_InvalidUser()
+        public async Task UserParam_InvalidUser()
         {
             var firstNameNull = new User { Id = "U1", Firstname = null, Lastname = "Lastname 1" };
             var firstNameEmpty = new User { Id = "U1", Firstname = "", Lastname = "Lastname 1" };
