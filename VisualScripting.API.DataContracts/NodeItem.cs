@@ -23,11 +23,11 @@ namespace VisualScripting.API.DataContracts
         [DataType(DataType.Text)]
         public string SchemaId { get; set; }
 
-        public IdValuePair[] InputValues { get; set; }
-        public ItemSlotPair[] InputSlots { get; set; }
-        public ItemSlotPair[] InputFlowSlots { get; set; }
-        public ItemSlotPair[] OutputSlots { get; set; }
-        public ItemSlotPair[] OutputFlowSlots { get; set; }
+        public IdValuePair[] InputValues { get; set; } = { };
+        public ItemSlotPair[] InputSlots { get; set; } = { };
+        public ItemSlotPair[] InputFlowSlots { get; set; } = { };
+        public Dictionary<int, ItemSlotPair[]> OutputSlots { get; set; } = new Dictionary<int, ItemSlotPair[]>();
+        public ItemSlotPair[] OutputFlowSlots { get; set; } = { };
         public int VariableId { get; set; }
 
         [DataType(DataType.Text)]

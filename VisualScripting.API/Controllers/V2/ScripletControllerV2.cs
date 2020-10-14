@@ -73,14 +73,11 @@ namespace VisualScripting.API.Controllers.V2
             if (value.Scriplet == null)
                 throw new ArgumentNullException("value.Scriplet");
 
-
             var data = await _service.CreateAsync(_mapper.Map<S.Scriplet>(value.Scriplet));
-
             if (data != null)
                 return _mapper.Map<Scriplet>(data);
-            else
-                return null;
 
+            return null;
         }
         #endregion
 
